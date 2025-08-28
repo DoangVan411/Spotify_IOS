@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+class UserRepositoryImpl: UserRepository {
+    func login() {
+        print("loging in...")
+    }
+}
