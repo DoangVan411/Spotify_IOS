@@ -1,18 +1,19 @@
 //
-//  LoginViewController.swift
+//  SignUpViewController.swift
 //  Spotify
 //
-//  Created by V000223 on 25/08/2025.
+//  Created by V000223 on 29/08/2025.
 //
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class SignUpViewController: UIViewController {
 
-    
-    @IBOutlet weak var tfForgotPassword: UILabel!
+    @IBOutlet weak var tfFullname: CustomTextField!
     @IBOutlet weak var tfEmail: CustomTextField!
     @IBOutlet weak var tfPassword: CustomTextField!
+    @IBOutlet weak var tfConfirm: CustomTextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +23,14 @@ class LoginViewController: UIViewController {
     }
     
     private func setUpTextFields () {
-        tfEmail.placeholder = "Enter Username Or Email"
+        tfFullname.placeholder = "Fullname"
+        tfFullname.isPasswordField = false
+        tfEmail.placeholder = "Email"
         tfEmail.isPasswordField = false
         tfPassword.placeholder = "Password"
         tfPassword.isPasswordField = true
+        tfConfirm.placeholder = "Repeat password"
+        tfConfirm.isPasswordField = true
     }
     
     private func setUpNavigationBar () {
@@ -37,10 +42,9 @@ class LoginViewController: UIViewController {
         
         navigationItem.titleView = appIcon
         navigationItem.backBarButtonItem = backIcon
+        navigationController?.navigationBar.barTintColor = .black
         
         appIcon.widthAnchor.constraint(equalToConstant: 133).isActive = true
         appIcon.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
-
-    
 }

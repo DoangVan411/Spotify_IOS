@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -24,37 +24,30 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="GW7-ua-l8w">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboard_background" translatesAutoresizingMaskIntoConstraints="NO" id="Dsc-tM-cUE">
-                    <rect key="frame" x="-42" y="120" width="404" height="404"/>
+                    <rect key="frame" x="-42" y="120" width="498" height="498"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Dsc-tM-cUE" secondAttribute="height" multiplier="1:1" id="n8p-FG-2ZS"/>
                     </constraints>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_icon" translatesAutoresizingMaskIntoConstraints="NO" id="g8f-yb-Iu5">
-                    <rect key="frame" x="93.5" y="80" width="133" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="QGX-e7-AtH"/>
-                        <constraint firstAttribute="width" constant="133" id="Vv6-H7-eUe"/>
-                    </constraints>
-                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music for everyone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JuZ-OX-xH7">
-                    <rect key="frame" x="40" y="190.5" width="240" height="29.5"/>
+                    <rect key="frame" x="40" y="572.5" width="334" height="29.5"/>
                     <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="24"/>
                     <color key="textColor" red="0.1176470588" green="0.84313725490000002" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1mX-6r-dpw">
-                    <rect key="frame" x="40" y="236" width="240" height="102.5"/>
+                    <rect key="frame" x="40" y="618" width="334" height="68.5"/>
                     <string key="text">Nulla Lorem mollit cupidatat irure. Laborum \n magna nulla duis ullamco cillum dolor. Voluptate exercitation incididunt aliquip deserunt reprehenderit elit laborum. </string>
                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="14"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAj-Je-qhD">
-                    <rect key="frame" x="40" y="378.5" width="240" height="72"/>
+                    <rect key="frame" x="40" y="726.5" width="334" height="72"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="72" id="HhI-i3-z94"/>
                     </constraints>
@@ -78,18 +71,15 @@
                 <constraint firstItem="1mX-6r-dpw" firstAttribute="top" secondItem="JuZ-OX-xH7" secondAttribute="bottom" constant="16" id="d2N-Zf-4uO"/>
                 <constraint firstItem="1ox-rt-TTr" firstAttribute="trailing" secondItem="JuZ-OX-xH7" secondAttribute="trailing" constant="40" id="dkl-zh-TCq"/>
                 <constraint firstItem="1ox-rt-TTr" firstAttribute="trailing" secondItem="mAj-Je-qhD" secondAttribute="trailing" constant="40" id="eFX-8v-pfp"/>
-                <constraint firstItem="g8f-yb-Iu5" firstAttribute="top" secondItem="GW7-ua-l8w" secondAttribute="top" constant="80" id="f0a-lF-xJA"/>
                 <constraint firstItem="1mX-6r-dpw" firstAttribute="trailing" secondItem="JuZ-OX-xH7" secondAttribute="trailing" id="ftV-dy-MMY"/>
                 <constraint firstItem="JuZ-OX-xH7" firstAttribute="leading" secondItem="1ox-rt-TTr" secondAttribute="leading" constant="40" id="rHb-DX-N6j"/>
                 <constraint firstItem="Dsc-tM-cUE" firstAttribute="top" secondItem="GW7-ua-l8w" secondAttribute="top" constant="120" id="sRh-2c-UCm"/>
                 <constraint firstItem="mAj-Je-qhD" firstAttribute="top" secondItem="1mX-6r-dpw" secondAttribute="bottom" constant="40" id="wEG-qw-bd5"/>
-                <constraint firstItem="g8f-yb-Iu5" firstAttribute="centerX" secondItem="GW7-ua-l8w" secondAttribute="centerX" id="wV7-zn-sKu"/>
             </constraints>
             <point key="canvasLocation" x="132" y="100"/>
         </view>
     </objects>
     <resources>
-        <image name="app_icon" width="2362" height="709"/>
         <image name="onboard_background" width="1712" height="2048"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

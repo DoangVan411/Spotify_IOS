@@ -16,13 +16,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
-        let loginViewController = LoginChoicesViewController(nibName: "LoginChoicesViewController", bundle: nil)
+        let loginViewController = SignUpViewController(nibName: "SignUpViewController", bundle: nil)
         let navigationController = UINavigationController(rootViewController: loginViewController)
         navigationController.isNavigationBarHidden = false
         
+        setUpNavigationBar()
         window.rootViewController = navigationController
         self.window = window
         window.makeKeyAndVisible()
+    }
+    
+    private func setUpNavigationBar() {
+        let appearance = UINavigationBar.appearance()
+        
+        appearance.backgroundColor = .black
+        
+        if let backImage = UIImage(named: "back_press")?.withRenderingMode(.alwaysOriginal) {
+            appearance.backIndicatorImage = backImage
+            appearance.backIndicatorTransitionMaskImage = backImage
+        }
+        appearance.tintColor = .white
+        
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.clear], for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.clear], for: .highlighted)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

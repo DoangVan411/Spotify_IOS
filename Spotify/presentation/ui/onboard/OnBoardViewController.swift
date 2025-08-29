@@ -14,8 +14,20 @@ class OnBoardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUpNavigationBar()
         createGradient()
         
+    }
+    
+    private func setUpNavigationBar() {
+        let appIcon = UIImageView(image: UIImage(named: "app_icon"))
+        appIcon.contentMode = .scaleAspectFit
+        appIcon.translatesAutoresizingMaskIntoConstraints = false
+        
+        navigationItem.titleView = appIcon
+        
+        appIcon.widthAnchor.constraint(equalToConstant: 133).isActive = true
+        appIcon.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
 
     private func createGradient () {
