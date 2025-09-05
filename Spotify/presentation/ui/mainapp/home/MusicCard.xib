@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Regular.ttf">
+            <string>Montserrat-Regular</string>
+        </array>
+        <array key="Montserrat-SemiBold.ttf">
+            <string>Montserrat-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MusicCard" customModule="Spotify" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MusicCard" customModule="Spotify">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="206"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="150" height="206"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jlF-eA-jsv">
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="206"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JWU-gj-kOr">
+                                <rect key="frame" x="11" y="0.0" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="e39-de-GEm"/>
+                                    <constraint firstAttribute="height" constant="128" id="mP4-df-3l6"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tT9-nk-eO9">
+                                <rect key="frame" x="11" y="136" width="128" height="17.5"/>
+                                <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHL-gV-ZGZ">
+                                <rect key="frame" x="11" y="157.5" width="128" height="15"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play_music" translatesAutoresizingMaskIntoConstraints="NO" id="lBh-1q-QBf">
+                                <rect key="frame" x="111" y="100" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="MTx-kw-VpF"/>
+                                    <constraint firstAttribute="height" constant="20" id="skZ-aK-UwD"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="YHL-gV-ZGZ" firstAttribute="leading" secondItem="JWU-gj-kOr" secondAttribute="leading" id="FD9-mS-abp"/>
+                            <constraint firstItem="tT9-nk-eO9" firstAttribute="top" secondItem="JWU-gj-kOr" secondAttribute="bottom" constant="8" id="UUh-s9-COB"/>
+                            <constraint firstItem="JWU-gj-kOr" firstAttribute="centerX" secondItem="jlF-eA-jsv" secondAttribute="centerX" id="Vyv-du-A1Z"/>
+                            <constraint firstAttribute="top" secondItem="JWU-gj-kOr" secondAttribute="top" id="Ycm-Yo-Q3w"/>
+                            <constraint firstItem="YHL-gV-ZGZ" firstAttribute="top" secondItem="tT9-nk-eO9" secondAttribute="bottom" constant="4" id="a2e-1H-dIF"/>
+                            <constraint firstItem="tT9-nk-eO9" firstAttribute="leading" secondItem="JWU-gj-kOr" secondAttribute="leading" id="cDu-Lt-Zix"/>
+                            <constraint firstItem="JWU-gj-kOr" firstAttribute="trailing" secondItem="lBh-1q-QBf" secondAttribute="trailing" constant="8" id="fIq-gB-4bo"/>
+                            <constraint firstItem="YHL-gV-ZGZ" firstAttribute="trailing" secondItem="JWU-gj-kOr" secondAttribute="trailing" id="fXZ-TK-c4o"/>
+                            <constraint firstItem="JWU-gj-kOr" firstAttribute="bottom" secondItem="lBh-1q-QBf" secondAttribute="bottom" constant="8" id="gAR-Gb-bQH"/>
+                            <constraint firstItem="tT9-nk-eO9" firstAttribute="trailing" secondItem="JWU-gj-kOr" secondAttribute="trailing" id="reI-OK-4Hq"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="jlF-eA-jsv" secondAttribute="trailing" id="5yk-PH-zIg"/>
+                <constraint firstItem="jlF-eA-jsv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="805-dR-IM0"/>
+                <constraint firstItem="jlF-eA-jsv" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="EsS-j7-mmL"/>
+                <constraint firstItem="jlF-eA-jsv" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="oME-4h-w1T"/>
+                <constraint firstAttribute="bottom" secondItem="jlF-eA-jsv" secondAttribute="bottom" id="pbG-lE-ZRG"/>
+            </constraints>
+            <connections>
+                <outlet property="image" destination="JWU-gj-kOr" id="c20-cU-YRc"/>
+                <outlet property="label1" destination="tT9-nk-eO9" id="7hD-K5-LDW"/>
+                <outlet property="label2" destination="YHL-gV-ZGZ" id="M3v-lh-cB3"/>
+            </connections>
+            <point key="canvasLocation" x="132" y="78"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="play_music" width="20" height="20"/>
+    </resources>
+</document>

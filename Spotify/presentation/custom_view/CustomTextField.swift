@@ -49,6 +49,7 @@ class CustomTextField: UIView {
         textField.textColor = .white
         textField.tintColor = .white
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
+        textField.font = UIFont(name: "Montserrat-SemiBold", size: 12)
         textField.leftViewMode = .always
         
         addSubview(textField)
@@ -72,7 +73,7 @@ class CustomTextField: UIView {
     private func updatePlaceholder() {
         textField.attributedPlaceholder = NSAttributedString(
             string: placeholder ?? "",
-            attributes: [.foregroundColor: UIColor.lightGray]
+            attributes: [.foregroundColor: UIColor.lightGray, .font: UIFont(name: "Montserrat-SemiBold", size: 12) ?? ""]
         )
     }
     
