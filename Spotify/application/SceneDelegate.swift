@@ -19,9 +19,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let loginViewController = SignUpViewController(nibName: "SignUpViewController", bundle: nil)
         let navigationController = UINavigationController(rootViewController: loginViewController)
         navigationController.isNavigationBarHidden = false
-        
-        
+
+
         let tabBarController = CustomTabBarController()
+        
+        let nowPlayingViewController = ArtistViewController(nibName: "ArtistViewController", bundle: nil)
+        let navController = UINavigationController(navigationBarClass: ArtistNavigationBar.self, toolbarClass: nil)
+        navController.viewControllers = [ArtistViewController()]
         
         setUpNavigationBar()
         window.rootViewController = tabBarController
@@ -33,11 +37,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let appearance = UINavigationBar.appearance()
         
         appearance.backgroundColor = .black
-        
-        if let backImage = UIImage(named: "back_press")?.withRenderingMode(.alwaysOriginal) {
-            appearance.backIndicatorImage = backImage
-            appearance.backIndicatorTransitionMaskImage = backImage
-        }
         appearance.tintColor = .white
         
         UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.clear], for: .normal)

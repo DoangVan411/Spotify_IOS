@@ -27,4 +27,30 @@ class MusicCard: UICollectionViewCell {
         image.image = hit.image
     }
 
+    func bindAlbumData(album: Album) {
+        label1.text = album.name
+        label2.text = album.publishYear.description
+        image.image = album.image
+    }
+    
+    func setupConstraints() {
+        removeAllConstraints()
+        NSLayoutConstraint.activate([
+            // Constraint cho imageView
+            image.topAnchor.constraint(equalTo: contentView.topAnchor),
+            image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            image.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            image.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1.0),
+
+            // Constraint cho topLabel
+            label1.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 8),
+            label1.centerXAnchor.constraint(equalTo: centerXAnchor),
+            
+
+            // Constraint cho bottomLabel
+            label2.topAnchor.constraint(equalTo: label1.bottomAnchor, constant: 8),
+            label2.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            label2.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
+    }
 }

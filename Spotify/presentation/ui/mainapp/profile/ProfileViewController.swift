@@ -24,6 +24,8 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         backgroundView.layer.cornerRadius = 24
+        backgroundView.layer.masksToBounds = true
+        backgroundView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         ivAvatar.layer.cornerRadius = ivAvatar.frame.width / 2
         
         setUpNavigationBar()
@@ -46,6 +48,11 @@ class ProfileViewController: UIViewController {
             .foregroundColor: UIColor.white,
             .font: UIFont(name: "Montserrat-Bold", size: 24),
         ]
+        
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.compactAppearance = appearance

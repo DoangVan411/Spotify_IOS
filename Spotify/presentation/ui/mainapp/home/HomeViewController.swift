@@ -35,6 +35,9 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let backButton = UIBarButtonItem(image: UIImage(named: "back_press_gray"), style: .plain, target: self, action: nil)
+        navigationItem.backBarButtonItem = backButton
+        
         setUpNavigationBar()
         createGradient()
         
@@ -46,6 +49,7 @@ class HomeViewController: UIViewController {
         hitCollectionView.dataSource = hitDelegate
         hitDelegate.testHits = testHits
     }
+
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -149,7 +153,7 @@ class HitCollectionViewDelegate: NSObject, UICollectionViewDelegate, UICollectio
     }
 }
 
-extension HomeViewController: UITableViewDataSource {
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
@@ -159,6 +163,14 @@ extension HomeViewController: UITableViewDataSource {
         let artist = artists[indexPath.row]
         cell.bindData(name: artist.name, image: artist.image!, numOfListeners: artist.numOfListeners)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Selected")
+        tableView.deselectRow(at: indexPath, animated: true)
+            
+        let artistVC = ArtistViewController(nibName: "ArtistViewController", bundle: nil)
+        navigationController?.pushViewController(artistVC, animated: false)
     }
 }
 

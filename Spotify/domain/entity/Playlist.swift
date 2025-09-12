@@ -13,4 +13,5 @@ struct Playlist {
     let name: String
     let numOfSongs: Int
     let image: UIImage?
+    var songs: [Song] = []
 }

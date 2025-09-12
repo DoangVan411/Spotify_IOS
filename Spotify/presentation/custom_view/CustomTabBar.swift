@@ -9,6 +9,7 @@ import UIKit
 
 class CustomTabBarController: UITabBarController {
     private var indicatorLayer: CAShapeLayer!
+    let centerButton = UIButton(type: .custom)
 
     private func setupIndicator() {
         indicatorLayer = CAShapeLayer()
@@ -129,14 +130,13 @@ class CustomTabBarController: UITabBarController {
 
     
     private func setupCenterButton() {
-        let centerButton = UIButton(type: .custom)
         centerButton.layer.cornerRadius = 30
         centerButton.frame = CGRect(x: 0, y: 0, width: 64, height: 64)
         
         if let spotifyIcon = UIImage(named: "spotify_icon") {
             centerButton.setImage(spotifyIcon, for: .normal)
             centerButton.imageView?.contentMode = .scaleAspectFit
-        } 
+        }
         
         centerButton.layer.shadowColor = UIColor.black.cgColor
         centerButton.layer.shadowOffset = CGSize(width: 0, height: 3)
@@ -154,6 +154,17 @@ class CustomTabBarController: UITabBarController {
             centerButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
             centerButton.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -16)
         ])
+    }
+    
+    func setTabBarHidden(_ hidden: Bool, animated: Bool) {
+        tabBar.isHidden = hidden
+        centerButton.isHidden = hidden
+        
+        if animated {
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
     @objc private func centerButtonTapped() {
