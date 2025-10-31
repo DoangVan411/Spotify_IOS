@@ -2,18 +2,22 @@
 //  AppDelegate.swift
 //  Spotify
 //
-//  Created by V000223 on 25/08/2025.
+//  Created by VanDoang on 25/08/2025.
 //
 
 import UIKit
+import AVFoundation
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default)
+        } catch let error as NSError {
+            print("Setting category to AVAudioSessionCategoryPlayback failed: \(error)")
+        }
         return true
     }
 

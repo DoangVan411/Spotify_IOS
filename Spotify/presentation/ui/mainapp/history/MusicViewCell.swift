@@ -2,7 +2,7 @@
 //  MusicViewCell.swift
 //  Spotify
 //
-//  Created by V000223 on 05/09/2025.
+//  Created by VanDoang on 05/09/2025.
 //
 
 import UIKit

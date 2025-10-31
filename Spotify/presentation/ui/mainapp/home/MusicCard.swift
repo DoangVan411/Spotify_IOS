@@ -2,7 +2,7 @@
 //  MusicCard.swift
 //  Spotify
 //
-//  Created by V000223 on 03/09/2025.
+//  Created by VanDoang on 03/09/2025.
 //
 
 import UIKit
@@ -21,16 +21,24 @@ class MusicCard: UICollectionViewCell {
         image.clipsToBounds = true
     }
     
-    func bindHitData(hit: Hit) {
-        label1.text = hit.name
-        label2.text = hit.author
-        image.image = hit.image
+    func bindData(track: DeezerTrack) {
+        label1.text = track.title
+        label2.text = track.artist.name
+        if let url = URL(string: track.album.cover ?? "") {
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if let data = data, let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.image.image = image
+                    }
+                }
+            }.resume()
+        }
     }
 
     func bindAlbumData(album: Album) {
         label1.text = album.name
-        label2.text = album.publishYear.description
-        image.image = album.image
+        label2.text = album.name
+        image.image = UIImage(named: "Adele")
     }
     
     func setupConstraints() {

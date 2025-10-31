@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "17ABEC54-E213-4E7B-B60B-4A0F1129C37A"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8D8A1258-4134-4947-A81E-C04ECEDFC2C0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Spotify/presentation/ui/mainapp/now_playing/NowPlayingViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "setUpSlider()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8D8A1258-4134-4947-A81E-C04ECEDFC2C0 - 6944f7e068c74efd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Spotify.NowPlayingViewController.playNextTrack() -&gt; ()"
+                  moduleName = "Spotify.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hohaiha/Documents/Spotify_IOS/Spotify/presentation/ui/mainapp/now_playing/NowPlayingViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121">
+               </Location>
+               <Location
+                  uuid = "8D8A1258-4134-4947-A81E-C04ECEDFC2C0 - d091058cf3bf2002"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Spotify.NowPlayingViewController.setUpSlider() -&gt; ()"
+                  moduleName = "Spotify.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hohaiha/Documents/Spotify_IOS/Spotify/presentation/ui/mainapp/now_playing/NowPlayingViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A424D00A-241F-42DC-B480-59F128E32C3E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Spotify/presentation/ui/mainapp/now_playing/NowPlayingViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "setUpSlider()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A424D00A-241F-42DC-B480-59F128E32C3E - 24f0f42be1b03917"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Spotify.NowPlayingViewController.playPreviousTrack() -&gt; ()"
+                  moduleName = "Spotify.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hohaiha/Documents/Spotify_IOS/Spotify/presentation/ui/mainapp/now_playing/NowPlayingViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109">
+               </Location>
+               <Location
+                  uuid = "A424D00A-241F-42DC-B480-59F128E32C3E - d091058cf3bf2002"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Spotify.NowPlayingViewController.setUpSlider() -&gt; ()"
+                  moduleName = "Spotify.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hohaiha/Documents/Spotify_IOS/Spotify/presentation/ui/mainapp/now_playing/NowPlayingViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A7F8E532-1BA2-4DFC-A2A9-256DEC9C3918"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Spotify/presentation/ui/mainapp/now_playing/NowPlayingViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "setUpSlider()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A7F8E532-1BA2-4DFC-A2A9-256DEC9C3918 - 6944f7e068c74f5e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Spotify.NowPlayingViewController.playNextTrack() -&gt; ()"
+                  moduleName = "Spotify.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hohaiha/Documents/Spotify_IOS/Spotify/presentation/ui/mainapp/now_playing/NowPlayingViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "118"
+                  endingLineNumber = "118">
+               </Location>
+               <Location
+                  uuid = "A7F8E532-1BA2-4DFC-A2A9-256DEC9C3918 - 6944f7e068c74e9c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Spotify.NowPlayingViewController.playNextTrack() -&gt; ()"
+                  moduleName = "Spotify.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hohaiha/Documents/Spotify_IOS/Spotify/presentation/ui/mainapp/now_playing/NowPlayingViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120">
+               </Location>
+               <Location
+                  uuid = "A7F8E532-1BA2-4DFC-A2A9-256DEC9C3918 - d091058cf3bf2002"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Spotify.NowPlayingViewController.setUpSlider() -&gt; ()"
+                  moduleName = "Spotify.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hohaiha/Documents/Spotify_IOS/Spotify/presentation/ui/mainapp/now_playing/NowPlayingViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "122"
+                  endingLineNumber = "122">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

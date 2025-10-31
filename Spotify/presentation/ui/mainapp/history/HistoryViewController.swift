@@ -2,7 +2,7 @@
 //  HistoryViewController.swift
 //  Spotify
 //
-//  Created by V000223 on 03/09/2025.
+//  Created by VanDoang on 03/09/2025.
 //
 
 import UIKit
@@ -13,8 +13,8 @@ class HistoryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     //sample code
-    let song = Song(id: "", title: "Hello", lyrics: "", releaseDate: Date.now, genre: "", duration: 120, image: UIImage(named: "Adele"), author: "Adele")
-    var playlist = Playlist(id: "", name: "Happiers", numOfSongs: 9, image: UIImage(named: "test_hit"))
+//    let song = Song(id: "", title: "Hello", lyrics: "", releaseDate: Date.now, genre: "", duration: 120, image: UIImage(named: "Adele"), author: "Adele")
+//    var playlist = Playlist(id: "", name: "Happiers", numOfSongs: 9, image: UIImage(named: "test_hit"))
     var playlists: [Playlist] = []
     let titles: [String] = ["Today", "Yesterday", "2 days ago"]
     
@@ -22,8 +22,8 @@ class HistoryViewController: UIViewController {
         super.viewDidLoad()
         setUpNavigationBar()
         createGradient()
-        playlist.songs = [song, song, song, song, song]
-        playlists = [playlist, playlist, playlist]
+//        playlist.songs = [song, song, song, song, song]
+//        playlists = [playlist, playlist, playlist]
     }
     
     override func viewDidLayoutSubviews() {
@@ -92,9 +92,9 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
         }
         else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "song_cell") as! MusicViewCell
-            let song: Song = playlists[indexPath.section].songs[indexPath.row - 1]
+            let song: SpotifyTrack = playlists[indexPath.section].songs[indexPath.row - 1]
             cell.contentView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
-            cell.bindData(label1: song.title, label2: song.author, iv: song.image!)
+            cell.bindData(label1: "", label2: "", iv: UIImage(named: "Adele")!)
             return cell
         }
     }

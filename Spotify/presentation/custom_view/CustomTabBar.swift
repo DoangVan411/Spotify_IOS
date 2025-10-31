@@ -2,7 +2,7 @@
 //  CustomTabBar.swift
 //  Spotify
 //
-//  Created by V000223 on 03/09/2025.
+//  Created by VanDoang on 03/09/2025.
 //
 
 import UIKit
@@ -156,7 +156,7 @@ class CustomTabBarController: UITabBarController {
         ])
     }
     
-    func setTabBarHidden(_ hidden: Bool, animated: Bool) {
+    override func setTabBarHidden(_ hidden: Bool, animated: Bool) {
         tabBar.isHidden = hidden
         centerButton.isHidden = hidden
         

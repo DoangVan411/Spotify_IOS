@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  Spotify
 //
-//  Created by V000223 on 25/08/2025.
+//  Created by VanDoang on 25/08/2025.
 //
 
 import UIKit
@@ -15,17 +15,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        
-        let loginViewController = SignUpViewController(nibName: "SignUpViewController", bundle: nil)
-        let navigationController = UINavigationController(rootViewController: loginViewController)
-        navigationController.isNavigationBarHidden = false
-
 
         let tabBarController = CustomTabBarController()
         
-        let nowPlayingViewController = ArtistViewController(nibName: "ArtistViewController", bundle: nil)
-        let navController = UINavigationController(navigationBarClass: ArtistNavigationBar.self, toolbarClass: nil)
-        navController.viewControllers = [ArtistViewController()]
+        let homeViewController = HomeViewController(nibName: "HomeViewController", bundle: nil)
+        let navController = UINavigationController()
+        navController.viewControllers = [homeViewController]
         
         setUpNavigationBar()
         window.rootViewController = tabBarController

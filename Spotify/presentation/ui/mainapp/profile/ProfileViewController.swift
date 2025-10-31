@@ -2,7 +2,7 @@
 //  ProfileViewController.swift
 //  Spotify
 //
-//  Created by V000223 on 03/09/2025.
+//  Created by VanDoang on 03/09/2025.
 //
 
 import UIKit
@@ -16,8 +16,8 @@ class ProfileViewController: UIViewController {
     
     
     // sample data
-    let song = Song(id: "", title: "Dekat Di Hati", lyrics: "", releaseDate: Date.now, genre: "", duration: 0, image: UIImage(named: "test_hit")!, author: "RAN")
-    lazy var songs = [song, song, song, song, song, song]
+//    let song = Song(id: "", title: "Dekat Di Hati", lyrics: "", releaseDate: Date.now, genre: "", duration: 0, image: UIImage(named: "test_hit")!, author: "RAN")
+    var songs = [Hit(id: "", name: "", author: "", image: UIImage(named: "Adele"))]
     //
     
     override func viewDidLoad() {
@@ -80,13 +80,13 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return songs.count
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MusicViewCell
         let song = songs[indexPath.row]
-        cell.bindData(label1: song.title, label2: song.author, iv: song.image!)
+        cell.bindData(label1: "", label2: "", iv: UIImage(named: "Adele")!)
         return cell
     }
     

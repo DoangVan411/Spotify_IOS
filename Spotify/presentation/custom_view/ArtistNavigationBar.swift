@@ -2,7 +2,7 @@
 //  ArtistNavigationBar.swift
 //  Spotify
 //
-//  Created by V000223 on 10/09/2025.
+//  Created by VanDoang on 10/09/2025.
 //
 
 import UIKit

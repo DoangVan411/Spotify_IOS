@@ -2,7 +2,7 @@
 //  CustomMediaControl.swift
 //  Spotify
 //
-//  Created by V000223 on 09/09/2025.
+//  Created by VanDoang on 09/09/2025.
 //
 
 import UIKit
@@ -35,9 +35,13 @@ class CustomMediaControl: UIView {
         backgroundColor = .clear
         let buttonSize: CGFloat = 24
         
+        btnPlay.imageView?.contentMode = .scaleAspectFit
+        btnPlay.contentHorizontalAlignment = .center
+        btnPlay.contentVerticalAlignment = .center
+        
         btnRewind.setImage(UIImage(named: "repeat_one")?.withRenderingMode(.alwaysOriginal), for: .normal)
         btnPrevious.setImage(UIImage(named: "previous")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        btnPlay.setImage(UIImage(named: "pause")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        btnPlay.setImage(UIImage(named: "play")?.withRenderingMode(.alwaysOriginal), for: .normal)
         btnNext.setImage(UIImage(named: "next")?.withRenderingMode(.alwaysOriginal), for: .normal)
         btnShuffle.setImage(UIImage(named: "shuffle")?.withRenderingMode(.alwaysOriginal), for: .normal)
         
@@ -84,7 +88,17 @@ class CustomMediaControl: UIView {
     
     @objc private func rewindAction() { onRewindTapped?() }
     @objc private func previousAction() { onPreviousTapped?() }
-    @objc private func playAction() { onPlayTapped?() }
+    @objc private func playAction() {
+        onPlayTapped?()
+    }
     @objc private func nextAction() { onNextTapped?() }
     @objc private func shuffleAction() { onShuffleTapped?() }
+    
+    func playSongBtnClicked () {
+        self.btnPlay.setImage(UIImage(named: "play")?.withRenderingMode(.alwaysOriginal), for: .normal)
+    }
+    
+    func pauseSongBtnClicked() {
+        self.btnPlay.setImage(UIImage(named: "pause")?.withRenderingMode(.alwaysOriginal), for: .normal)
+    }
 }

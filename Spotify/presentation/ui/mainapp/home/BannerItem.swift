@@ -2,7 +2,7 @@
 //  BannerItem.swift
 //  Spotify
 //
-//  Created by V000223 on 04/09/2025.
+//  Created by VanDoang on 04/09/2025.
 //
 
 import UIKit

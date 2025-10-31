@@ -2,14 +2,13 @@
 //  Artist.swift
 //  Spotify
 //
-//  Created by V000223 on 04/09/2025.
+//  Created by VanDoang on 04/09/2025.
 //
 
 import Foundation
 import UIKit
 
-struct Artist {
+struct Artist: Decodable {
+    let id: String
     let name: String
-    let numOfListeners: Int
-    let image: UIImage?
 }

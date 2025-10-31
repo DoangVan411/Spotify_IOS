@@ -2,7 +2,7 @@
 //  ArtistViewController.swift
 //  Spotify
 //
-//  Created by V000223 on 10/09/2025.
+//  Created by VanDoang on 10/09/2025.
 //
 
 import UIKit
@@ -13,12 +13,12 @@ class ArtistViewController: UIViewController {
     @IBOutlet weak var songTableView: UITableView!
     let appearance = UINavigationBarAppearance()
     
-    //sample data
-    let album = Album(name: "Manusia", image: UIImage(named: "Adele"), publishYear: 2014)
-    lazy var testAlbums = [album, album, album, album, album]
-    
-    let song = Song(id: "0", title: "Hello", lyrics: "", releaseDate: Date.now, genre: "", duration: 120, image: UIImage(named: "Adele"), author: "Adele")
-    lazy var songs = [song, song, song, song, song]
+//    //sample data
+//    let album = Album(images: [UIImage (named: "Adele")!])
+    var testAlbums: [Album] = []
+//
+//    let song = Song(id: <#T##String#>)
+    var songs: [SpotifyTrack] = []
     //
     
     override func viewDidLoad() {
@@ -156,11 +156,11 @@ extension ArtistViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell2") as! MusicViewCell
         
-        let song: Song = songs[indexPath.row]
+        let track: SpotifyTrack = songs[indexPath.row]
         
         cell.label2.isHidden = true
         
-        cell.bindData(label1: song.title, label2: "", iv: song.image!)
+        cell.bindData(label1: "", label2: "", iv: UIImage(named: "Adele")!)
         return cell
     }
     

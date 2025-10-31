@@ -2,7 +2,7 @@
 //  LyricsViewCell.swift
 //  Spotify
 //
-//  Created by V000223 on 09/09/2025.
+//  Created by VanDoang on 09/09/2025.
 //
 
 import UIKit

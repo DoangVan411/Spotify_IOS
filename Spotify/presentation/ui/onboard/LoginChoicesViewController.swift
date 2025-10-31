@@ -2,7 +2,7 @@
 //  LoginChoicesViewController.swift
 //  Spotify
 //
-//  Created by V000223 on 28/08/2025.
+//  Created by VanDoang on 28/08/2025.
 //
 
 import UIKit

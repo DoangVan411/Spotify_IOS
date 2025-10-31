@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Montserrat-Bold.ttf">
+            <string>Montserrat-Bold</string>
+        </array>
         <array key="Montserrat-Regular.ttf">
             <string>Montserrat-Regular</string>
         </array>
         <array key="Montserrat-SemiBold.ttf">
             <string>Montserrat-SemiBold</string>
         </array>
-        <array key="Montserrat-VariableFont_wght.ttf">
-            <string>Montserrat-Bold</string>
-        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NowPlayingViewController" customModule="Spotify" customModuleProvider="target">
             <connections>
                 <outlet property="imageView" destination="PyP-8W-38y" id="FyD-te-OWS"/>
+                <outlet property="lblAuthor" destination="wDj-Ht-heX" id="278-s2-TMI"/>
+                <outlet property="lblMax" destination="D9y-QY-CbS" id="lSM-lW-jj7"/>
+                <outlet property="lblMin" destination="n72-fW-Tdz" id="wLQ-XF-4KL"/>
                 <outlet property="lblName" destination="IAb-xp-w9B" id="DAo-WI-qqR"/>
                 <outlet property="mediaControl" destination="eev-oj-vPW" id="YhX-AC-Zhu"/>
                 <outlet property="slider" destination="7sx-QZ-jwk" id="Zmz-WS-nS1"/>
@@ -34,10 +38,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oFh-wy-qov">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="96" width="414" height="732"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ki-f6-oDk">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="793.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="797.5"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Adele" translatesAutoresizingMaskIntoConstraints="NO" id="PyP-8W-38y">
                                     <rect key="frame" x="40" y="24" width="334" height="384"/>
@@ -79,25 +83,25 @@
                                         <constraint firstAttribute="width" constant="32" id="wKu-Rc-NUh"/>
                                     </constraints>
                                 </imageView>
-                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="7sx-QZ-jwk">
-                                    <rect key="frame" x="38" y="539" width="338" height="31"/>
+                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="7sx-QZ-jwk">
+                                    <rect key="frame" x="40" y="539" width="334" height="34"/>
                                     <color key="minimumTrackTintColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="thumbTintColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </slider>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n72-fW-Tdz">
-                                    <rect key="frame" x="40" y="571" width="26.5" height="15"/>
+                                    <rect key="frame" x="40" y="575" width="26.5" height="15"/>
                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9y-QY-CbS">
-                                    <rect key="frame" x="352.5" y="571" width="21.5" height="15"/>
+                                    <rect key="frame" x="352.5" y="575" width="21.5" height="15"/>
                                     <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eev-oj-vPW" customClass="CustomMediaControl" customModule="Spotify" customModuleProvider="target">
-                                    <rect key="frame" x="63" y="618" width="288" height="64"/>
+                                    <rect key="frame" x="63" y="622" width="288" height="64"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="288" id="3pj-pP-pdf"/>
@@ -105,7 +109,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVI-LX-FVp">
-                                    <rect key="frame" x="187" y="736" width="40" height="29.5"/>
+                                    <rect key="frame" x="187" y="740" width="40" height="29.5"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vector_up" translatesAutoresizingMaskIntoConstraints="NO" id="kVg-vV-yVs">
                                             <rect key="frame" x="11" y="0.0" width="18" height="8"/>

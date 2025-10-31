@@ -2,7 +2,7 @@
 //  SignUpViewController.swift
 //  Spotify
 //
-//  Created by V000223 on 29/08/2025.
+//  Created by VanDoang on 29/08/2025.
 //
 
 import UIKit

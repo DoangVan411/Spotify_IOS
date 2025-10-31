@@ -2,14 +2,16 @@
 //  Album.swift
 //  Spotify
 //
-//  Created by V000223 on 10/09/2025.
+//  Created by VanDoang on 10/09/2025.
 //
 
 import Foundation
 import UIKit
 
-struct Album {
+struct Album: Decodable {
     let name: String
-    let image: UIImage?
-    let publishYear: Int
+    let images: [APIImage]
+    struct APIImage: Decodable {
+        let url: String
+    }
 }

@@ -2,7 +2,7 @@
 //  HomeViewController.swift
 //  Spotify
 //
-//  Created by V000223 on 03/09/2025.
+//  Created by VanDoang on 03/09/2025.
 //
 
 import UIKit
@@ -13,47 +13,74 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var segmentShadow: UIView!
     @IBOutlet weak var tableView: UITableView!
     
-    let bannerDelegate = BannerCollectionViewDelegate()
-    let hitDelegate = HitCollectionViewDelegate()
-    
     private let segmentControl = ScrollableSegmentControlView(
-            titles: ["Artists", "Album", "Podcast", "Genre"]
-        )
+        titles: ["Artists", "Album", "Podcast", "Genre"]
+    )
     
-    
-    //sample data
-    let popularSong = Popular(name: "Sisa Rasa", author: "Mahalini", image: UIImage(named: "Mahalini"))
-    lazy var testPopulars = [popularSong, popularSong, popularSong, popularSong, popularSong]
-    
-    let hit = Hit(name: "Runtuh", author: "Feby Putri, Fiersa", image: UIImage(named: "test_hit"))
-    lazy var testHits = [hit, hit, hit, hit, hit]
-    
-    let artist = Artist(name: "Adele", numOfListeners: 1000000, image: UIImage(named: "Mahalini"))
-    lazy var artists = [artist, artist, artist, artist, artist]
-    //
+    private var tracks: [DeezerTrack] = []
+    private var testPopulars: [Popular] = []
+    private var artists: [Artist] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let backButton = UIBarButtonItem(image: UIImage(named: "back_press_gray"), style: .plain, target: self, action: nil)
-        navigationItem.backBarButtonItem = backButton
-        
-        setUpNavigationBar()
+        setupNavigationBar()
         createGradient()
-        
-        bannerCollectionView.delegate = bannerDelegate
-        bannerCollectionView.dataSource = bannerDelegate
-        bannerDelegate.testPopulars = testPopulars
-        
-        hitCollectionView.delegate = hitDelegate
-        hitCollectionView.dataSource = hitDelegate
-        hitDelegate.testHits = testHits
+        setupDelegates()
+        setupCollectionViews()
+        setupTableView()
+        fetchHitsTrack()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setupNavigationBar()
+    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupSegmentControl()
+        setupSegmentControlLayout()
+        setupCollectionLayouts()
+    }
+}
+
+// MARK: - Setup
+extension HomeViewController {
+    
+    private func setupDelegates() {
+        bannerCollectionView.delegate = self
+        bannerCollectionView.dataSource = self
+        hitCollectionView.delegate = self
+        hitCollectionView.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    private func setupCollectionViews() {
+        let bannerNib = UINib(nibName: "BannerItem", bundle: .main)
+        bannerCollectionView.register(bannerNib, forCellWithReuseIdentifier: "cell1")
+        
+        let hitNib = UINib(nibName: "MusicCard", bundle: .main)
+        hitCollectionView.register(hitNib, forCellWithReuseIdentifier: "cell2")
+    }
+    
+    private func setupTableView() {
+        let tableNib = UINib(nibName: "TableItem", bundle: .main)
+        tableView.register(tableNib, forCellReuseIdentifier: "table_cell")
+    }
+    
+    private func setupSegmentControlLayout() {
+        view.addSubview(segmentControl)
+        NSLayoutConstraint.activate([
+            segmentControl.topAnchor.constraint(equalTo: hitCollectionView.bottomAnchor, constant: 32),
+            segmentControl.leadingAnchor.constraint(equalTo: hitCollectionView.leadingAnchor),
+            segmentControl.trailingAnchor.constraint(equalTo: hitCollectionView.trailingAnchor),
+            segmentControl.heightAnchor.constraint(equalToConstant: 32)
+        ])
+    }
+    
+    private func setupCollectionLayouts() {
         if let bannerLayout = bannerCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             bannerLayout.scrollDirection = .horizontal
             bannerLayout.itemSize = CGSize(width: bannerCollectionView.bounds.width, height: bannerCollectionView.bounds.height)
@@ -63,28 +90,9 @@ class HomeViewController: UIViewController {
             hitLayout.itemSize = CGSize(width: 128, height: hitCollectionView.bounds.height)
             hitLayout.minimumInteritemSpacing = 16
         }
-        
-        let bannerNib = UINib(nibName: "BannerItem", bundle: .main)
-        bannerCollectionView.register(bannerNib, forCellWithReuseIdentifier: "cell1")
-        
-        let hitNib = UINib(nibName: "MusicCard", bundle: .main)
-        hitCollectionView.register(hitNib, forCellWithReuseIdentifier: "cell2")
-        
-        let tableNib = UINib(nibName: "TableItem", bundle: .main)
-        tableView.register(tableNib, forCellReuseIdentifier: "table_cell")
     }
     
-    private func setupSegmentControl() {
-            view.addSubview(segmentControl)
-            NSLayoutConstraint.activate([
-                segmentControl.topAnchor.constraint(equalTo: hitCollectionView.bottomAnchor, constant: 32),
-                segmentControl.leadingAnchor.constraint(equalTo: hitCollectionView.leadingAnchor),
-                segmentControl.trailingAnchor.constraint(equalTo: hitCollectionView.trailingAnchor),
-                segmentControl.heightAnchor.constraint(equalToConstant: 32)
-            ])
-        }
-    
-    private func setUpNavigationBar () {
+    private func setupNavigationBar() {
         let appIcon = UIImageView(image: UIImage(named: "app_icon"))
         appIcon.contentMode = .scaleAspectFit
         appIcon.translatesAutoresizingMaskIntoConstraints = false
@@ -100,77 +108,96 @@ class HomeViewController: UIViewController {
         navigationItem.leftBarButtonItem = searchIcon
         navigationItem.rightBarButtonItem = settingIcon
         navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
         appIcon.widthAnchor.constraint(equalToConstant: 133).isActive = true
         appIcon.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
-    private func reloadData(for index: Int) {
-        tableView.reloadData()
-    }
-
-    private func createGradient () {
+    private func createGradient() {
         let gradient = CAGradientLayer()
         gradient.frame = segmentShadow.bounds
-        gradient.colors = [    UIColor.white.withAlphaComponent(0.0).cgColor,
-                               UIColor.white.withAlphaComponent(0.15).cgColor,
-                               UIColor.white.withAlphaComponent(0.1).cgColor,
-                               UIColor.white.withAlphaComponent(0.05).cgColor]
+        gradient.colors = [
+            UIColor.white.withAlphaComponent(0.0).cgColor,
+            UIColor.white.withAlphaComponent(0.15).cgColor,
+            UIColor.white.withAlphaComponent(0.1).cgColor,
+            UIColor.white.withAlphaComponent(0.05).cgColor
+        ]
         gradient.locations = [0.1, 0.3, 0.5]
         segmentShadow.layer.mask = gradient
     }
     
+    private func fetchHitsTrack() {
+        APIService.shared.getHits { result in
+            switch result {
+            case .success(let tracks):
+                DispatchQueue.main.async {
+                    self.tracks = tracks
+                    self.hitCollectionView.reloadData()
+                }
+            case .failure(let error):
+                print("Home error:", error)
+            }
+        }
+    }
 }
 
-class BannerCollectionViewDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
-    var testPopulars: [Popular] = []
+// MARK: - UICollectionViewDelegate & DataSource
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! BannerItem
-        let popular = testPopulars[indexPath.row]
-        cell.bindData(popular: popular)
-        return cell
-    }
-}
-
-class HitCollectionViewDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
-    var testHits: [Hit] = []
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        if collectionView == bannerCollectionView {
+            return testPopulars.count
+        } else {
+            return tracks.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! MusicCard
-        
-        let hit = testHits[indexPath.row]
-        cell.bindHitData(hit: hit)
-        return cell
+        if collectionView == bannerCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell1", for: indexPath) as! BannerItem
+            let popular = testPopulars[indexPath.row]
+            cell.bindData(popular: popular)
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! MusicCard
+            let track = tracks[indexPath.row]
+            cell.bindData(track: track)
+            return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == hitCollectionView {
+            let playSongVC = NowPlayingViewController(nibName: "NowPlayingViewController", bundle: nil)
+            playSongVC.currentIdx = indexPath.row
+            playSongVC.tracks = tracks
+            navigationController?.pushViewController(playSongVC, animated: true)
+        }
     }
 }
 
+// MARK: - UITableViewDelegate & DataSource
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return artists.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "table_cell", for: indexPath) as! TableItem
         let artist = artists[indexPath.row]
-        cell.bindData(name: artist.name, image: artist.image!, numOfListeners: artist.numOfListeners)
+        cell.bindData(name: "", image: UIImage(named: "Adele")!, numOfListeners: 0)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Selected")
         tableView.deselectRow(at: indexPath, animated: true)
-            
         let artistVC = ArtistViewController(nibName: "ArtistViewController", bundle: nil)
         navigationController?.pushViewController(artistVC, animated: false)
     }
 }
-
