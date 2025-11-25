@@ -12,6 +12,7 @@ class ArtistViewController: UIViewController {
     @IBOutlet weak var albumCollectionView: UICollectionView!
     @IBOutlet weak var songTableView: UITableView!
     let appearance = UINavigationBarAppearance()
+    var artist: Artist?
     
 //    //sample data
 //    let album = Album(images: [UIImage (named: "Adele")!])
@@ -24,7 +25,7 @@ class ArtistViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hidesBottomBarWhenPushed = false
-        setUpNavigationBar(image: UIImage(named: "Adele")!)
+        fetchImage()
     }
     
     override func viewDidLayoutSubviews() {
@@ -51,7 +52,7 @@ class ArtistViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
-    private func setUpNavigationBar(image: UIImage) {
+    private func setUpNavigationBar(title: String, image: UIImage) {
         if let navBar = navigationController?.navigationBar {
             navBar.backgroundColor = .black
             navBar.prefersLargeTitles = true
@@ -104,7 +105,7 @@ class ArtistViewController: UIViewController {
         
         appearance.configureWithOpaqueBackground()
         
-        navigationItem.title = "Adele"
+        navigationItem.title = title
         
         appearance.largeTitleTextAttributes = [
             .foregroundColor: UIColor.white,
@@ -129,6 +130,17 @@ class ArtistViewController: UIViewController {
 
     @objc private func onMoreTapped(_ sender: UIButton) {
         
+    }
+    
+    private func fetchImage() {
+        let url = URL(string: artist?.picture ?? "")!
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data, let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    self.setUpNavigationBar(title: self.artist?.name ?? "",image: image)
+                }
+            }
+        }.resume()
     }
 }
 

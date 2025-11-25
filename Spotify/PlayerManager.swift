@@ -10,7 +10,7 @@ import AVFoundation
 
 class PlayerManager {
     static let shared = PlayerManager()
-    private var player: AVPlayer?
+    var player: AVPlayer?
     
     private init () {}
     
@@ -20,11 +20,13 @@ class PlayerManager {
         player?.play()
     }
     
-    func togglePlayPause() {
+    func togglePlayPause() -> Bool {
         if player?.timeControlStatus == .paused {
             player?.play()
+            return true
         } else {
             player?.pause()
+            return false
         }
     }
     

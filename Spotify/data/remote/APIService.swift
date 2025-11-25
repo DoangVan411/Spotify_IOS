@@ -14,10 +14,11 @@ class APIService {
     private init() {}
     
     struct Constant {
-        static let baseURL = "https://api.spotify.com/v1/"
-        static let hits = "playlists/3cEYpjA9oz9GiPac4AsH4n/tracks"
+        static let baseURL = "https://api.deezer.com/"
+        static let hits = "playlist/908622995"
         static let playerUrl = "me/player/play"
         static let deviceId = "1DA0E74E-5C53-446B-83A1-D7ABED8A1D32"
+        static let artists = "artist/27/related"
     }
     
     enum APIError: Error {
@@ -28,7 +29,7 @@ class APIService {
     let session: URLSession = URLSession.shared
     
     public func getHits(completion: @escaping (Result<[DeezerTrack], Error>) -> Void) {
-        let url = URL(string: "https://api.deezer.com/playlist/908622995")!
+        let url = URL(string: Constant.baseURL + Constant.hits)!
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -43,6 +44,7 @@ class APIService {
                 let res = try JSONDecoder().decode(DeezerPlaylistResponse.self, from: data)
                 let hits = Array(res.tracks.data.prefix(10))
                 DispatchQueue.main.async{
+                    print(hits)
                     completion(.success(hits))
                 }
             }
@@ -62,28 +64,25 @@ class APIService {
         }.resume()
     }
     
-    func playTrack (trackURL: String, completion: @escaping (Bool?) -> Void) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
+    func getArtists(completion: @escaping (Result<[Artist], Error>) -> Void) {
+        let url = Constant.baseURL + Constant.artists
         
-        let url = URL(string: trackURL)
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = "GET"
         
-        session.dataTask(with: url!) {data, response, error in
-            if let data = data {
-                print("Yes response body")
-            }
-            if let error = error {
-                completion(false)
+        self.session.dataTask(with: request) {data, response, error in
+            guard let data = data, error == nil else {
+                completion(.failure(APIError.failedToGetData))
                 return
             }
-            
-            guard let httpResponse = response as? HTTPURLResponse else {
-                completion(false)
-                return
+            do {
+                let res = try JSONDecoder().decode(ArtistsResponse.self, from: data)
+                let artists = Array(res.data.prefix(10))
+                completion(.success(artists))
+            } catch {
+                completion(.failure(error))
             }
             
-            completion(httpResponse.statusCode == 204)
         }.resume()
     }
 }

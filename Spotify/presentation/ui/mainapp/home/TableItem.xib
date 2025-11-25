@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Montserrat-VariableFont_wght.ttf">
+        <array key="Montserrat-Regular.ttf">
             <string>Montserrat-Regular</string>
+        </array>
+        <array key="Montserrat-VariableFont_wght.ttf">
             <string>Montserrat-SemiBold</string>
         </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="KGk-i7-Jjw" customClass="TableItem" customModule="Spotify" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="KGk-i7-Jjw" customClass="TableItem" customModule="Spotify" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yc1-FP-dlj">
-                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                        <rect key="frame" x="0.0" y="10" width="80" height="80"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="80" id="5Nv-TG-c1K"/>
                             <constraint firstAttribute="width" secondItem="yc1-FP-dlj" secondAttribute="height" multiplier="1:1" id="EHY-8A-B72"/>
@@ -42,7 +45,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vector_white" translatesAutoresizingMaskIntoConstraints="NO" id="6CE-Zm-VKi">
-                        <rect key="frame" x="312" y="31" width="8" height="18"/>
+                        <rect key="frame" x="312" y="41" width="8" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="k6e-mh-s4A"/>
                             <constraint firstAttribute="width" constant="8" id="tdG-cb-YCu"/>
@@ -54,10 +57,10 @@
                     <constraint firstItem="2n0-J0-cl0" firstAttribute="leading" secondItem="5l2-QH-OMk" secondAttribute="leading" id="IV7-4j-PLz"/>
                     <constraint firstItem="6CE-Zm-VKi" firstAttribute="centerY" secondItem="yc1-FP-dlj" secondAttribute="centerY" id="XdI-eW-8MA"/>
                     <constraint firstItem="5l2-QH-OMk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="fAn-Nf-aVD"/>
-                    <constraint firstItem="yc1-FP-dlj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="gQY-rM-23V"/>
+                    <constraint firstItem="yc1-FP-dlj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="gQY-rM-23V"/>
                     <constraint firstItem="yc1-FP-dlj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ibg-9Y-Psu"/>
                     <constraint firstAttribute="trailing" secondItem="6CE-Zm-VKi" secondAttribute="trailing" id="lOf-LY-Wtw"/>
-                    <constraint firstAttribute="bottom" secondItem="yc1-FP-dlj" secondAttribute="bottom" id="miG-Ma-0Xf"/>
+                    <constraint firstAttribute="bottom" secondItem="yc1-FP-dlj" secondAttribute="bottom" constant="10" id="miG-Ma-0Xf"/>
                     <constraint firstItem="2n0-J0-cl0" firstAttribute="top" secondItem="5l2-QH-OMk" secondAttribute="bottom" constant="12" id="xCG-62-a1p"/>
                     <constraint firstItem="5l2-QH-OMk" firstAttribute="leading" secondItem="yc1-FP-dlj" secondAttribute="trailing" constant="16" id="zRB-zg-wTl"/>
                 </constraints>
@@ -69,7 +72,7 @@
                 <outlet property="name" destination="5l2-QH-OMk" id="fxf-SN-mXU"/>
                 <outlet property="numOfListeners" destination="2n0-J0-cl0" id="NrT-Ma-cmO"/>
             </connections>
-            <point key="canvasLocation" x="131.8840579710145" y="89.732142857142847"/>
+            <point key="canvasLocation" x="131.8840579710145" y="96.428571428571431"/>
         </tableViewCell>
     </objects>
     <resources>

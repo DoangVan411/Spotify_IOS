@@ -11,9 +11,10 @@ import UIKit
 class NowPlayingViewModel {
     
     private let getImageUseCase: GetImageUseCase
-    private let playerManager: PlayerManager
+    let playerManager: PlayerManager
     private var tracks: [DeezerTrack]
-    private var currentIdx: Int = 0
+    var currentIdx: Int = 0
+    var onTrackChanged: ((DeezerTrack) -> Void)?
     
     init(playerManager: PlayerManager, tracks: [DeezerTrack], getImageUseCase: GetImageUseCase) {
         self.getImageUseCase = getImageUseCase
@@ -21,20 +22,22 @@ class NowPlayingViewModel {
         self.tracks = tracks
     }
 
-    func togglePlayPause() {
-        playerManager.togglePlayPause()
+    func togglePlayPause() -> Bool {
+        return playerManager.togglePlayPause()
     }
     
     func playNextTrack() {
         guard currentIdx + 1 < tracks.count else { return }
         currentIdx += 1
         playerManager.play(track: tracks[currentIdx])
+        onTrackChanged?(tracks[currentIdx])
     }
     
     func playPreviousTrack() {
         guard currentIdx - 1 >= 0 else { return }
         currentIdx -= 1
         playerManager.play(track: tracks[currentIdx])
+        onTrackChanged?(tracks[currentIdx])
     }
     
     func getImage(url: URL, completion: @escaping (UIImage?) -> Void) {

@@ -24,10 +24,17 @@ class BannerItem: UICollectionViewCell {
         previousItem.transform = CGAffineTransform(rotationAngle: .pi)
     }
     
-    func bindData (popular: Popular) {
-        lblName.text = popular.name
-        lblAuthor.text = popular.author
-        image.image = popular.image
+    func bindData (popular: DeezerTrack) {
+        lblName.text = popular.title
+        if let url = URL(string: popular.album.cover ?? "") {
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if let data = data, let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.image.image = image
+                    }
+                }
+            }.resume()
+        }
     }
 
 }

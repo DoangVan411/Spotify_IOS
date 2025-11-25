@@ -8,7 +8,18 @@
 import Foundation
 import UIKit
 
-struct Artist: Decodable {
-    let id: String
+struct ArtistsResponse: Codable {
+    let data: [Artist]
+}
+
+struct Artist: Codable {
     let name: String
+    let picture: String
+    let numberOfAlbums: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case name = "name"
+        case picture = "picture"
+        case numberOfAlbums = "nb_album"
+    }
 }

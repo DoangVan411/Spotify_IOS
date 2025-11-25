@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Root response (danh sách bài hát)
+// MARK: - Root response
 struct DeezerPlaylistResponse: Codable {
     let id: Int
     let title: String

@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default)
+            try audioSession.setActive(true) 
         } catch let error as NSError {
             print("Setting category to AVAudioSessionCategoryPlayback failed: \(error)")
         }

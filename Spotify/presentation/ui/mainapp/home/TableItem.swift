@@ -24,10 +24,18 @@ class TableItem: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func bindData (name: String, image: UIImage, numOfListeners: Int) {
+    func bindData (name: String, image: String, numOfListeners: Int) {
         self.name.text = name
-        self.numOfListeners.text = "\(numOfListeners) monthly listeners"
-        avatar.image = image
+        self.numOfListeners.text = "\(numOfListeners) albums"
+        if let url = URL(string: image ?? "") {
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if let data = data, let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.avatar.image = image
+                    }
+                }
+            }.resume()
+        }
     }
     
 }

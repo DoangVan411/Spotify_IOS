@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
     )
     
     private var tracks: [DeezerTrack] = []
-    private var testPopulars: [Popular] = []
+    private var testPopulars: [DeezerTrack] = []
     private var artists: [Artist] = []
     
     override func viewDidLoad() {
@@ -30,6 +30,7 @@ class HomeViewController: UIViewController {
         setupCollectionViews()
         setupTableView()
         fetchHitsTrack()
+        fetchArtists()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -133,8 +134,25 @@ extension HomeViewController {
             case .success(let tracks):
                 DispatchQueue.main.async {
                     self.tracks = tracks
+                    self.testPopulars = tracks
                     self.hitCollectionView.reloadData()
+                    self.bannerCollectionView.reloadData()
                 }
+            case .failure(let error):
+                print("Home error:", error)
+            }
+        }
+    }
+    
+    private func fetchArtists () {
+        APIService.shared.getArtists { result in
+            switch result {
+            case .success(let artists):
+                DispatchQueue.main.async{
+                    self.artists = artists
+                    self.tableView.reloadData()
+                }
+                print("Artists fetched successfully \(artists.count)")
             case .failure(let error):
                 print("Home error:", error)
             }
@@ -175,7 +193,14 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if collectionView == hitCollectionView {
             let playSongVC = NowPlayingViewController(nibName: "NowPlayingViewController", bundle: nil)
             playSongVC.currentIdx = indexPath.row
+            print("Current idx: \(indexPath.row)")
             playSongVC.tracks = tracks
+            navigationController?.pushViewController(playSongVC, animated: true)
+        } else {
+            let playSongVC = NowPlayingViewController(nibName: "NowPlayingViewController", bundle: nil)
+            playSongVC.currentIdx = indexPath.row
+            print("Current idx: \(indexPath.row)")
+            playSongVC.tracks = testPopulars
             navigationController?.pushViewController(playSongVC, animated: true)
         }
     }
@@ -191,13 +216,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "table_cell", for: indexPath) as! TableItem
         let artist = artists[indexPath.row]
-        cell.bindData(name: "", image: UIImage(named: "Adele")!, numOfListeners: 0)
+        cell.bindData(name: artist.name, image: artist.picture, numOfListeners: artist.numberOfAlbums)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let artistVC = ArtistViewController(nibName: "ArtistViewController", bundle: nil)
-        navigationController?.pushViewController(artistVC, animated: false)
+        artistVC.artist = artists[indexPath.row]
+        navigationController?.pushViewController(artistVC, animated: true)
     }
 }
