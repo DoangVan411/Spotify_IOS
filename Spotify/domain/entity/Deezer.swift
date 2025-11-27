@@ -36,9 +36,6 @@ struct DeezerArtist: Codable {
     let picture: String?
 }
 
-// MARK: - Album
-struct DeezerAlbum: Codable {
-    let id: Int
-    let title: String
-    let cover: String?
+struct TopTrackResponse: Decodable {
+    let data: [DeezerTrack]
 }

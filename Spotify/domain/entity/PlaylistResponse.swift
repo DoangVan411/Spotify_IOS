@@ -18,7 +18,6 @@ struct Item: Decodable {
 struct SpotifyTrack: Decodable {
     let name: String
     let artists: [Artist]
-    let album: Album
     
     struct Artist: Decodable {
         let id: String

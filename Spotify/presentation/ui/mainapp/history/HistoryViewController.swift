@@ -94,7 +94,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "song_cell") as! MusicViewCell
             let song: SpotifyTrack = playlists[indexPath.section].songs[indexPath.row - 1]
             cell.contentView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
-            cell.bindData(label1: "", label2: "", iv: UIImage(named: "Adele")!)
+            cell.bindData(label1: "", label2: "", iv: "")
             return cell
         }
     }

@@ -8,10 +8,9 @@
 import Foundation
 import UIKit
 
-struct Album: Decodable {
-    let name: String
-    let images: [APIImage]
-    struct APIImage: Decodable {
-        let url: String
-    }
+// MARK: - Album
+struct DeezerAlbum: Codable {
+    let id: Int
+    let title: String
+    let cover: String?
 }

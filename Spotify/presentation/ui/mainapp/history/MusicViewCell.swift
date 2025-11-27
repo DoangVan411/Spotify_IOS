@@ -24,10 +24,19 @@ class MusicViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func bindData(label1: String, label2: String, iv: UIImage) {
+    func bindData(label1: String, label2: String, iv: String) {
         self.label1.text = label1
         self.label2.text = label2
-        self.iv.image = iv
+        if let url = URL(string: iv) {
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if let data = data, let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        print(iv)
+                        self.iv.image = image
+                    }
+                }
+            }.resume()
+        }
     }
     
 }

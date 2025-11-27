@@ -85,4 +85,23 @@ class APIService {
             
         }.resume()
     }
+    
+    func getArtistTopTrack(url: URL, completion: @escaping (Result<[DeezerTrack], Error>) -> Void) {
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        self.session.dataTask(with: request) {data, response, error in
+            guard let data = data, error == nil else {
+                completion(.failure(APIError.failedToGetData))
+                return
+            }
+            do {
+                let res = try JSONDecoder().decode(TopTrackResponse.self, from: data)
+                let topTracks = Array(res.data.prefix(15))
+                completion(.success(topTracks))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
 }

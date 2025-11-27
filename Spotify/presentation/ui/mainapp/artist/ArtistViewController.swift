@@ -16,15 +16,21 @@ class ArtistViewController: UIViewController {
     
 //    //sample data
 //    let album = Album(images: [UIImage (named: "Adele")!])
-    var testAlbums: [Album] = []
+    var albums: [DeezerAlbum] = []
 //
 //    let song = Song(id: <#T##String#>)
-    var songs: [SpotifyTrack] = []
+    var songs: [DeezerTrack] = []
     //
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hidesBottomBarWhenPushed = false
+        fetchImage()
+        fetchSongsAndAlbums()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetchImage()
     }
     
@@ -142,17 +148,37 @@ class ArtistViewController: UIViewController {
             }
         }.resume()
     }
+    
+    private func fetchSongsAndAlbums() {
+        let url = URL(string: artist?.tracklist ?? "")!
+        APIService.shared.getArtistTopTrack(url: url) { result in
+            switch result {
+            case .success(let tracks):
+                DispatchQueue.main.async {
+                    self.songs = tracks
+                    for song in self.songs {
+                        self.albums.append(song.album)
+                    }
+                    self.songTableView.reloadData()
+                    self.albumCollectionView.reloadData()
+                }
+            case .failure(let error):
+                print("Home error:", error)
+            }
+        }
+    }
 }
 
 extension ArtistViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return testAlbums.count
+        return albums.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MusicCard
-        let album = testAlbums[indexPath.row]
+        cell.label2.isHidden = true
+        let album = albums[indexPath.row]
         cell.bindAlbumData(album: album)
         return cell
     }
@@ -168,13 +194,19 @@ extension ArtistViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell2") as! MusicViewCell
         
-        let track: SpotifyTrack = songs[indexPath.row]
+        let track: DeezerTrack = songs[indexPath.row]
         
         cell.label2.isHidden = true
-        
-        cell.bindData(label1: "", label2: "", iv: UIImage(named: "Adele")!)
+        print("Preview: ", track.preview)
+        cell.bindData(label1: track.title, label2: track.artist.name, iv: track.album.cover ?? "")
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        let nowPlayingVC = NowPlayingViewController()
+        nowPlayingVC.tracks = self.songs
+        nowPlayingVC.currentIdx = indexPath.row
+        self.navigationController?.pushViewController(nowPlayingVC, animated: true)
+    }
 }

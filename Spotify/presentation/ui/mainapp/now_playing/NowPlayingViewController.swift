@@ -15,6 +15,7 @@ class NowPlayingViewController: UIViewController {
     var currentIdx: Int = 0
     
     var nowPlayingViewModel: NowPlayingViewModel?
+    let appearance = UINavigationBarAppearance()
     
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var imageView: UIImageView!
@@ -35,7 +36,6 @@ class NowPlayingViewController: UIViewController {
         let getImageUseCase = GetImageUseCase(imageRepository: imageRepository)
         self.nowPlayingViewModel = NowPlayingViewModel(playerManager: PlayerManager.shared, tracks: self.tracks, getImageUseCase: getImageUseCase)
         
-        setUpNavigationBar()
         nowPlayingViewModel?.currentIdx = currentIdx
         guard tracks.indices.contains(currentIdx) else { return }
         
@@ -56,10 +56,15 @@ class NowPlayingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setUpNavigationBar()
         nowPlayingViewModel?.playTrack(track: tracks[currentIdx])
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        appearance.backgroundColor = .black
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
         if let tabBarController = tabBarController as? CustomTabBarController {
             tabBarController.setTabBarHidden(false, animated: false)
         }
@@ -152,7 +157,6 @@ class NowPlayingViewController: UIViewController {
         
         let backButton = UIImage(named: "back_press_gray")
         
-        let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1.0)
         

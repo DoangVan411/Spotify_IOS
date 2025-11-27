@@ -35,10 +35,17 @@ class MusicCard: UICollectionViewCell {
         }
     }
 
-    func bindAlbumData(album: Album) {
-        label1.text = album.name
-        label2.text = album.name
-        image.image = UIImage(named: "Adele")
+    func bindAlbumData(album: DeezerAlbum) {
+        label1.text = album.title
+        if let url = URL(string: album.cover ?? "") {
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if let data = data, let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.image.image = image
+                    }
+                }
+            }.resume()
+        }
     }
     
     func setupConstraints() {

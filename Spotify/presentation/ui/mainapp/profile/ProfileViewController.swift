@@ -86,7 +86,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MusicViewCell
         let song = songs[indexPath.row]
-        cell.bindData(label1: "", label2: "", iv: UIImage(named: "Adele")!)
+        cell.bindData(label1: "", label2: "", iv: "")
         return cell
     }
     
