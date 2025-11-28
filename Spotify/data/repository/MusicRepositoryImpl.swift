@@ -11,6 +11,7 @@ import UIKit
 class MusicRepositoryImpl: MusicRepository {
     
     let apiService: APIService = APIService.shared
+    let coreDataService: CoreDataService = CoreDataService.shared
     
     func getHitTracks(completion: @escaping (Result<[DeezerTrack], any Error>) -> Void) {
         apiService.getHits(completion: completion)
@@ -18,5 +19,13 @@ class MusicRepositoryImpl: MusicRepository {
     
     func getImage(url: URL, completion: @escaping (UIImage?) -> Void) {
         apiService.getImage(url: url, completion: completion)
+    }
+    
+    func addSongToHistory(deezerTrack: DeezerTrack) {
+        coreDataService.addSongToHistory(deezerTrack: deezerTrack)
+    }
+    
+    func getHistory() -> [Song] {
+        return coreDataService.getHistory()
     }
 }

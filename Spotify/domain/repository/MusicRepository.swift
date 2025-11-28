@@ -11,4 +11,6 @@ import UIKit
 protocol MusicRepository {
     func getHitTracks (completion: @escaping (Result<[DeezerTrack], Error>) -> Void)
     func getImage (url: URL, completion: @escaping (UIImage?) -> Void)
+    func addSongToHistory (deezerTrack: DeezerTrack)
+    func getHistory() -> [Song]
 }

@@ -11,15 +11,17 @@ import UIKit
 class NowPlayingViewModel {
     
     private let getImageUseCase: GetImageUseCase
+    private let addSongToHistoryUseCase: AddSongToHistoryUseCase
     let playerManager: PlayerManager
     private var tracks: [DeezerTrack]
     var currentIdx: Int = 0
     var onTrackChanged: ((DeezerTrack) -> Void)?
     
-    init(playerManager: PlayerManager, tracks: [DeezerTrack], getImageUseCase: GetImageUseCase) {
+    init(playerManager: PlayerManager, tracks: [DeezerTrack], getImageUseCase: GetImageUseCase, addSongToHistoryUseCase: AddSongToHistoryUseCase) {
         self.getImageUseCase = getImageUseCase
         self.playerManager = playerManager
         self.tracks = tracks
+        self.addSongToHistoryUseCase = addSongToHistoryUseCase
     }
 
     func togglePlayPause() -> Bool {
@@ -30,6 +32,7 @@ class NowPlayingViewModel {
         guard currentIdx + 1 < tracks.count else { return }
         currentIdx += 1
         playerManager.play(track: tracks[currentIdx])
+        addSongToHistoryUseCase.execute(deezerTrack: self.tracks[currentIdx])
         onTrackChanged?(tracks[currentIdx])
     }
     
@@ -37,6 +40,7 @@ class NowPlayingViewModel {
         guard currentIdx - 1 >= 0 else { return }
         currentIdx -= 1
         playerManager.play(track: tracks[currentIdx])
+        addSongToHistoryUseCase.execute(deezerTrack: self.tracks[currentIdx])
         onTrackChanged?(tracks[currentIdx])
     }
     
@@ -45,6 +49,7 @@ class NowPlayingViewModel {
     }
     
     func playTrack(track: DeezerTrack) {
+        addSongToHistoryUseCase.execute(deezerTrack: self.tracks[currentIdx])
         playerManager.play(track: track)
     }
 }

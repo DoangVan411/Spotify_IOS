@@ -32,9 +32,13 @@ class NowPlayingViewController: UIViewController {
             tabBarController.setTabBarHidden(true, animated: false)
         }
         
+        PlayerManager.shared.setUpRemoteCommand()
+        
         let imageRepository = ImageRepositoryImpl()
         let getImageUseCase = GetImageUseCase(imageRepository: imageRepository)
-        self.nowPlayingViewModel = NowPlayingViewModel(playerManager: PlayerManager.shared, tracks: self.tracks, getImageUseCase: getImageUseCase)
+        let musicRepository = MusicRepositoryImpl()
+        let addSongToHistoryUseCase = AddSongToHistoryUseCase(musicRepository: musicRepository)
+        self.nowPlayingViewModel = NowPlayingViewModel(playerManager: PlayerManager.shared, tracks: self.tracks, getImageUseCase: getImageUseCase, addSongToHistoryUseCase: addSongToHistoryUseCase)
         
         nowPlayingViewModel?.currentIdx = currentIdx
         guard tracks.indices.contains(currentIdx) else { return }

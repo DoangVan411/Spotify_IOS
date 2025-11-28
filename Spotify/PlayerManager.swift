@@ -7,6 +7,7 @@
 
 import Foundation
 import AVFoundation
+import MediaPlayer
 
 class PlayerManager {
     static let shared = PlayerManager()
@@ -33,5 +34,29 @@ class PlayerManager {
     func stop () {
         player?.pause()
         player = nil
+    }
+    
+    func setUpRemoteCommand() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+        
+        commandCenter.playCommand.addTarget { _ in
+            self.player?.play()
+            return .success
+        }
+        
+        commandCenter.pauseCommand.addTarget { _ in
+            self.player?.pause()
+                    return .success
+                }
+
+        commandCenter.nextTrackCommand.addTarget { _ in
+            NotificationCenter.default.post(name: .init("NextTrack"), object: nil)
+            return .success
+        }
+
+        commandCenter.previousTrackCommand.addTarget { _ in
+            NotificationCenter.default.post(name: .init("PrevTrack"), object: nil)
+            return .success
+        }
     }
 }
